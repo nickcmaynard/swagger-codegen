@@ -13,7 +13,10 @@ public class JaxRSServerCodegen extends JavaClientCodegen implements CodegenConf
 
     public JaxRSServerCodegen() {
         super.processOpts();
+        init();
+    }
 
+    public void init() {
         sourceFolder = "src/gen/java";
         invokerPackage = "io.swagger.api";
         artifactId = "swagger-jaxrs-server";
