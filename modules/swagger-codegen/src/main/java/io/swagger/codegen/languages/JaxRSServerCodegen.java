@@ -237,7 +237,7 @@ public class JaxRSServerCodegen extends JavaClientCodegen implements CodegenConf
         return result;
     }
 
-    private String implFileFolder(String output) {
+    String implFileFolder(String output) {
         return outputFolder + "/" + output + "/" + apiPackage().replace('.', '/');
     }
 

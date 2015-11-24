@@ -53,4 +53,23 @@ public class JaxRSCDIServerCodegen extends JaxRSServerCodegen implements Codegen
         return "Generates a Java JAXRS CDI Server application.";
     }
 
+    @Override
+    public String apiFilename(String templateName, String tag) {
+
+        String result = super.apiFilename(templateName, tag);
+
+        if (templateName.endsWith("Service.mustache")) {
+            int ix = result.lastIndexOf('/');
+            result = result.substring(0, ix) + "/impl" + result.substring(ix, result.length() - 5) + "Service.java";
+
+            String output = System.getProperty("swagger.codegen.jaxrs.impl.source");
+            if(output == null) {
+                output = "src" + File.separator + "main" + File.separator + "java";
+            }
+            result = result.replace(apiFileFolder(), implFileFolder(output));
+        }
+
+        return result;
+    }
+
 }
